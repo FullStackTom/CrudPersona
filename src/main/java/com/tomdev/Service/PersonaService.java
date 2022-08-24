@@ -7,9 +7,9 @@ import com.tomdev.Model.Persona;
 public interface PersonaService {
 	
 	List<Persona> listarPersonas();
-	Persona ObtenerIdPersona(Integer id);
+	public Persona EncontrarPersona(Persona persona);
 	void guardarPersona(Persona persona);
-	void eliminarPersona(Integer id);
+	void eliminarPersona(Persona persona);
 	void actualizarPersona(Persona persona);
 
 }

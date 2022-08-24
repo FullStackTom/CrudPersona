@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tomdev.Model.Persona;
 import com.tomdev.Repository.PersonaRepository;
@@ -20,11 +21,7 @@ public class PersonaServiceImpl implements PersonaService {
 		return repository.findAll();
 	}
 
-	@Override
-	public Persona ObtenerIdPersona(Integer id) {
-		// TODO Auto-generated method stub
-		return repository.findById(id).orElse(null);
-	}
+	
 
 	@Override
 	public void guardarPersona(Persona persona) {
@@ -34,9 +31,9 @@ public class PersonaServiceImpl implements PersonaService {
 	}
 
 	@Override
-	public void eliminarPersona(Integer id) {
+	public void eliminarPersona(Persona persona) {
 		// TODO Auto-generated method stub
-		repository.deleteById(id);
+		repository.delete(persona);
 
 	}
 
@@ -45,6 +42,15 @@ public class PersonaServiceImpl implements PersonaService {
 		// TODO Auto-generated method stub
 		repository.saveAndFlush(persona);
 
+	}
+
+
+
+	 @Override
+	 @Transactional(readOnly = true)	
+	public Persona EncontrarPersona(Persona persona) {
+		// TODO Auto-generated method stub
+		return repository.findById(persona.getIdPersona()).orElse(null);
 	}
 
 }

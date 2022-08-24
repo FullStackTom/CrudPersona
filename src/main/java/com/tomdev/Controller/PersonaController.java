@@ -40,4 +40,23 @@ public class PersonaController {
 		return "redirect:/";
 	}
 
+	
+	@GetMapping("/editar/{idPersona}")
+	public String editar(Persona persona, Model model) {
+		persona= service.EncontrarPersona(persona);
+		model.addAttribute("persona", persona);
+		return "modificar";
+		
+	}
+	
+	@GetMapping("/eliminar/{idPersona}")
+	public String eliminar(Persona persona) {
+		
+		service.eliminarPersona(persona);
+		return "redirect:/";
+	}
+	
+	
+	
+	
 }
